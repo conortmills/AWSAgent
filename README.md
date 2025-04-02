@@ -16,7 +16,7 @@ I've split this exercise in 3 parts:
 
 You won't be coding from scratch, and will be guided along the way. Look for `# ...` comments, which indicate where you should add code.
 
-**IMPORTANT:** This is a timed exercise, one I would expect completed in **3h or less**. These expectations are only realistic if you get help from an AI assistant. We use Cursor, and I highly recommend you use it too (or another AI-powered IDE).
+**IMPORTANT:** This is a timed exercise, one I would expect completed in 5h or less. **You will lose access to the repository on the 5-hour mark**. These expectations are only realistic if you get help from an AI assistant. We use Cursor, and I highly recommend you use it too (or another AI-powered IDE).
 
 Good luck, I'm looking forward to seeing your work!
 
