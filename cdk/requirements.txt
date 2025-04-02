@@ -1,0 +1,9 @@
+aws-cdk-lib==2.177.0
+cdklabs.generative-ai-cdk-constructs==0.1.289
+pydantic==1.10.17
+boto3==1.36.13
+aws_lambda_powertools==3.5.0
+neo4j==5.27.0
+pytz==2024.1
+PyPDF2==3.0.1
+anthropic==0.45.2
