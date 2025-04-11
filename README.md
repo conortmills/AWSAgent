@@ -33,8 +33,7 @@ In this part you'll get to create Agent Smith, a simplified version of one of Ri
 In order to use the CDK CLI, you need to store your AWS IAM credentials in `~/.aws/credentials`. Use the credentials below:
 ```
 [default]
-aws_access_key_id = AKIAZI2LING2JJVPFNMX
-aws_secret_access_key = 5ZDFCAak8oeXwXlLHZ+yHTidxMECA3lV5Iw1bZva
+
 ```
 Now create a Python virtual environment and install dependencies:
 ```

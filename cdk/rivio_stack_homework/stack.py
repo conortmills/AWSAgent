@@ -39,6 +39,15 @@ class HomeworkStack(Stack):
                 log_group_name = 'agent-smith-lambda',
                 removal_policy = RemovalPolicy.DESTROY,
             ),
+                environment={
+                # 'IAM_ACCESS_KEY': 'AKIAZI2LING2JJVPFNMX',
+                # 'IAM_SECRET_KEY': '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',
+                'NEO4J_URI': 'neo4j+s://672749ab.databases.neo4j.io',
+                'NEO4J_USER': 'neo4j',
+                'NEO4J_PASSWORD': 'BPnnI-xg52zfIkWN-w3J5MK5u1dDnu1bOLfuO9y6gp4',
+                'AGENT_ID': 'UXRXSTGVCR', 
+                'AGENT_ALIAS_ID': 'BCL3OZBSOE',
+            },
             # ...
         )    
 
@@ -58,6 +67,13 @@ class HomeworkStack(Stack):
         )
 
         root_resource = api.root.add_resource('agent-smith')
+        root_resource.add_method(
+            'GET', 
+            apigw.LambdaIntegration(agent_smith_lambda),
+            method_responses=[{
+                'statusCode': '200'
+            }]
+        )
 
         # ...
 

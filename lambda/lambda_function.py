@@ -45,21 +45,45 @@ def handler(event, context):
 # HTTP ROUTES #
 # ----------- #
 
-@http_resolver.post("/agent-smith")
+@http_resolver.get("/agent-smith")
 def invoke_agent_smith():
-    body = http_resolver.current_event.json_body
-    logger.info(f"invoke_agent_smith(): body = { body }")
-    # ...
+    # Extract the prompt from the query string parameters
+    prompt = http_resolver.current_event.query_string_parameters.get("prompt", "")
+    logger.info(f"invoke_agent_smith(): prompt = { prompt }")
+    
+    if not prompt:
+        return {
+            "statusCode": 400,
+            "body": "Prompt is required"
+        }
+    
+    # Prepare the agent invocation parameters
+    agent_id = http_resolver.environment_variables.get('AGENT_ID')
+    agent_alias_id = http_resolver.environment_variables.get('AGENT_ALIAS_ID')
+    
+    if not agent_id or not agent_alias_id:
+        return {
+            "statusCode": 500,
+            "body": "Agent ID and Alias ID must be configured in environment variables"
+        }
+    
+    # Use the helper function (_invoke_agent) to invoke the agent
+    try:
+        response = _invoke_agent(prompt)  # Call _invoke_agent instead of invoke_bedrock_agent
+        logger.info(f"Agent response: {response}")
+        
+        return {
+            "statusCode": 200,
+            "body": response
+        }
+    
+    except Exception as e:
+        logger.error(f"Error invoking agent: {e}")
+        return {
+            "statusCode": 500,
+            "body": f"Error invoking agent: {str(e)}"
+        }
 
-# ------------- #
-# AGENT ACTIONS #
-# ------------- #
-
-# ...
-
-# ---------------- #
-# HELPER FUNCTIONS #
-# ---------------- #
 
 def _invoke_agent(user_prompt):
     session = Session(
